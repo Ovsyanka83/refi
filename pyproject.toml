@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "refi"
-version = "0.1.0"
+name = "refaci"
+version = "1.0.0"
 description = ""
 authors = ["Stanislav Zmiev <szmiev2000@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/ovsyanka83/refi"
+repository = "https://github.com/ovsyanka83/refaci"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,7 +19,7 @@ pytest = ">=7.2.1"
 pytest-cov = ">=4.0.0"
 
 [tool.poetry.scripts]
-refi = 'refi.__main__:app'
+refaci = 'refaci.__main__:app'
 
 [tool.coverage.report]
 fail_under = 100
@@ -116,7 +116,6 @@ extend-exclude = ["migrations"]
     "PT012",    # ignore complex with pytest.raises clauses
 ]
 
-```
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
