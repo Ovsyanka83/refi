@@ -2,10 +2,10 @@
 name = "refaci"
 version = "1.0.0"
 description = ""
-authors = ["Stanislav Zmiev <szmiev2000@gmail.com>"]
+authors = ["Stanislav Zmiev <zmievsa@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/ovsyanka83/refaci"
+repository = "https://github.com/zmievsa/refaci"
 
 [tool.poetry.dependencies]
 python = "^3.10"

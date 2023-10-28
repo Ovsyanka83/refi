@@ -24,3 +24,52 @@ A toolbox for changing imports in enormous codebases after a large refactoring.
 ```bash
 pip install refaci
 ```
+
+## Guide
+
+```python
+
+import json
+from pathlib import Path
+​
+from refaci.refactor import ContentsRegex, FilePathRegex, refactor
+
+{
+    "moved": {
+        "old_package.worker": {
+            "DEAD_MESSAGE_TTL": { # Symbol that we changed
+                "path": "new_package.worker",
+                "alias": "DEAD_MESSAGE_TTL"
+            },
+            "RETRY_TIME": {
+                "path": "new_package.worker",
+                "alias": "NEW_RETRY_TIME_NAME"
+            }
+        },
+    },
+    "new": { # These imports will be added to all modules automatically
+        "b64_decode_url_params": "new_package.pagination",
+        "PaginationToken": "new_package.pagination"
+    }
+}​
+​
+​
+replacements = {
+    FilePathRegex(r""): (
+        ("internal_config=", "internal_settings="),
+        ("= get_logger", "= getLogger"),
+    ),
+    FilePathRegex(r"api/app.py"): [
+        ("LogicError", "BusinessLogicError"),
+    ],
+    ContentsRegex(r"class .+\(.+Controller\)"): (
+        ("super().get(", "self.client.get("),
+    ),
+    FilePathRegex(r"tests/"): [
+        ["Response(", "make_response("],
+    ],
+}
+​
+​
+refactor(Path(input("Path to your service:")), import_replacements["moved"], import_replacements["new"], replacements)
+```
